@@ -1,15 +1,14 @@
+type Mode = 'normal' | 'hard'
+
 class HitAndBlow {
   private readonly answerSource = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
   private answer: string[] = []
   private tryCount = 0
-  private mode: 'normal' | 'hard'
+  private mode: Mode = 'normal'
 
-  constructor(mode: 'normal' | 'hard') {
-    this.mode = mode
-  }
-
-  setting() {
-    const answerLength = 3
+  async setting() {
+    this.mode = await promptInput('モードを入力してください') as Mode
+    const answerLength = this.getAnswerLength()
 
     while (this.answer.length < answerLength) {
       const randNum = Math.floor(Math.random() * this.answerSource.length)
@@ -28,7 +27,7 @@ class HitAndBlow {
   }
 
   async play() {
-    const inputArr = (await promptInput('「,」区切りで3つの数字を入力してください')).split(',')
+    const inputArr = (await promptInput(`「,」区切りで${this.getAnswerLength()}つの数字を入力してください`)).split(',')
 
     if (!this.validate(inputArr)) {
       printLine('無効な入力です。')
@@ -44,6 +43,18 @@ class HitAndBlow {
       await this.play()
     } else {
       this.tryCount += 1
+    }
+  }
+
+  private getAnswerLength() {
+    switch (this.mode) {
+      case 'normal':
+        return 3
+      case 'hard':
+        return 4
+      default:
+        // 基本この分岐には入らないがmodeが増えたときの対応漏れを考慮して設定
+        throw new Error(`${this.mode}は無効なモードです`)
     }
   }
 
@@ -84,8 +95,8 @@ const promptInput = async (text: string) => {
 }
 
 ;(async () => {
-  const hitAndBlow = new HitAndBlow('normal')
-  hitAndBlow.setting()
+  const hitAndBlow = new HitAndBlow()
+  await hitAndBlow.setting()
   await hitAndBlow.play()
   hitAndBlow.end()
 })()
