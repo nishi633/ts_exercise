@@ -5,8 +5,7 @@ type Mode = typeof modes[number] // 'normal' | 'hard'型
 const gameTitles = ['hit and blow', 'janken'] as const
 type GameTitle = typeof gameTitles[number]
 type GameStore = {
-  'hit and blow': HitAndBlow
-  'janken': Janken
+  [key in GameTitle]: HitAndBlow | Janken
 }
 
 class GameProcedure {
