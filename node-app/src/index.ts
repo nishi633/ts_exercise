@@ -5,12 +5,12 @@ type Mode = typeof modes[number] // 'normal' | 'hard'型
 const gameTitles = ['hit and blow', 'janken'] as const
 type GameTitle = typeof gameTitles[number]
 type GameStore = {
-  [key in GameTitle]: HitAndBlow | Janken
+  [key in GameTitle]: Game
 }
 
 class GameProcedure {
   private currentGameTitle: GameTitle | '' = ''
-  private currentGame: HitAndBlow | Janken | null = null
+  private currentGame: Game | null = null
 
   constructor(private readonly gameStore: GameStore) {}
 
@@ -52,7 +52,13 @@ class GameProcedure {
   }
 }
 
-class HitAndBlow {
+abstract class Game {
+  abstract setting(): Promise<void>
+  abstract play(): Promise<void>
+  abstract end(): void
+}
+
+class HitAndBlow implements Game {
   private readonly answerSource = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
   private answer: string[] = []
   private tryCount = 0
@@ -175,7 +181,7 @@ const promptInput = async (text: string) => {
 const jankenOptions = ['rock', 'paper', 'scissors'] as const
 type JankenOption = typeof jankenOptions[number]
 
-class Janken {
+class Janken implements Game {
   private rounds = 0
   private currentRound = 1
   private result = {
