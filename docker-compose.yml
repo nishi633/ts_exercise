@@ -7,3 +7,11 @@ services:
       - ./node-app:/root
     tty: true
     stdin_open: true
+
+  browser-app:
+    build:
+      context: ./browser-app/
+    volumes:
+      - ./browser-app:/root
+    tty: true
+    stdin_open: true
