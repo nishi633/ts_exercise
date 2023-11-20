@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "NODE_OPTIONS='--openssl-legacy-provider' webpack",
     "serve": "serve ./ -p 3000"
   },
   "keywords": [],
