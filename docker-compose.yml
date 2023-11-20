@@ -13,5 +13,7 @@ services:
       context: ./browser-app/
     volumes:
       - ./browser-app:/root
+    ports:
+      - 3000:3000
     tty: true
     stdin_open: true
