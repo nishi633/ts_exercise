@@ -11,6 +11,8 @@ services:
   browser-app:
     build:
       context: ./browser-app/
+    container_name: browser-app
+    command: "npm run serve"
     volumes:
       - ./browser-app:/root
     ports:
