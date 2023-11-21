@@ -16,10 +16,10 @@ class Application {
       button,
       () => alert('clicked'),
     )
+
+    eventListener.remove('sample')
   }
 }
-
-
 
 window.addEventListener('load', () => {
   const app = new Application()
