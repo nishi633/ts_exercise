@@ -16,6 +16,7 @@ export class EventListener {
       handler,
     }
 
+    // 指定のイベントが実行されたときに第二引数の関数を実行する
     element.addEventListener(event, handler)
   }
 

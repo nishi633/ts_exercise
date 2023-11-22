@@ -1,23 +1,25 @@
 import { EventListener } from './EventListener'
+import { Task } from './Task'
 
 class Application {
+  private readonly eventListener = new EventListener()
+
   start() {
-    const eventListener = new EventListener()
-    const button = document.getElementById('deleteAllDoneTask')
+    const createForm = document.getElementById('createForm') as HTMLElement
+    this.eventListener.add('submit-handler', 'submit', createForm, this.handleSubmit)
+  }
 
-    // HTMLElementが返らない場合があるため
-    if (!button) return
+  private handleSubmit = (e: Event) => {
+    e.preventDefault() // formのデフォルトの動作をキャンセル
 
-    console.log(button)
+    // inputフォームのvalueを取得するためHTMLInputElementを利用
+    const titleInput = document.getElementById('title') as HTMLInputElement
 
-    eventListener.add(
-      'sample',
-      'click',
-      button,
-      () => alert('clicked'),
-    )
+    // フォームに入力がない場合はタスクを追加しない
+    if (!titleInput.value) return
 
-    eventListener.remove('sample')
+      const task = new Task({ title: titleInput.value })
+      console.log(task)
   }
 }
 
