@@ -18,8 +18,9 @@ class Application {
     // フォームに入力がない場合はタスクを追加しない
     if (!titleInput.value) return
 
-      const task = new Task({ title: titleInput.value })
-      console.log(task)
+    const task = new Task({ title: titleInput.value })
+    console.log(task)
+    console.log('aaaaa')
   }
 }
 
