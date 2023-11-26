@@ -12,7 +12,7 @@ services:
     build:
       context: ./browser-app/
     container_name: browser-app
-    command: "npm run serve"
+    command: "bash -c 'npm run build && npm run serve'"
     volumes:
       - ./browser-app:/root
     ports:
