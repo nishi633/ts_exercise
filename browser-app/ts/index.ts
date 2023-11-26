@@ -20,7 +20,6 @@ class Application {
 
     const task = new Task({ title: titleInput.value })
     console.log(task)
-    console.log('aaaaa')
   }
 }
 
