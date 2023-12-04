@@ -1,10 +1,15 @@
 import { Status, Task } from './Task'
 
+const STORAGE_KEY = 'TASKS'
+
 export class TaskCollection {
   private tasks: Task[] = []
+  private readonly storage
+
 
   add(task: Task) {
     this.tasks.push(task)
+    this.updateStorage()
   }
 
   find(id: string) {
@@ -20,9 +25,14 @@ export class TaskCollection {
 
   delete(task: Task) {
     this.tasks = this.tasks.filter(({ id }) => id !== task.id)
+    this.updateStorage()
   }
 
   filter(filterStatus: Status) {
     return this.tasks.filter(({ status }) => status === filterStatus)
+  }
+
+  private updateStorage() {
+    this.storage.setItem(STORAGE_KEY, JSON.stringify(this.tasks))
   }
 }
