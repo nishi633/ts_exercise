@@ -25,6 +25,7 @@ export class TaskCollection {
       if (item.id === task.id) return task
       return item
     })
+    this.updateStorage()
   }
 
   delete(task: Task) {
