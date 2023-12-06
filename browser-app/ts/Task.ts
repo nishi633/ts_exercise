@@ -34,7 +34,7 @@ export class Task {
     if (!value) return false
     if (!validate(value.id)) return false
     if (!value.title) return false
-    if (!Object.values(statusMap).includes(values.status)) return false
+    if (!Object.values(statusMap).includes(value.status)) return false
 
     return true
   }
