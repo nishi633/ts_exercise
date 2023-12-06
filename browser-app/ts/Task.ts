@@ -5,7 +5,14 @@ export const statusMap = {
   doing: 'DOING',
   done: 'DONE',
 } as const
+
 export type Status = typeof statusMap[keyof typeof statusMap]
+
+export type TaskObject = {
+  id: string
+  title: string
+  status: Status
+}
 
 export class Task {
   readonly id
