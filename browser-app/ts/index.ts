@@ -21,8 +21,8 @@ class Application {
       this.eventListener.add('click', deleteButtonEl,
                              () => this.handleClickDeleteTask(task), task.id)
     })
-    this.eventListener.add('submit', createForm, this.handleSubmit, 'submit-handler')
-    this.eventListener.add('click', deleteAllDoneTaskButton, this.handleClickDeleteAllDoneTasks, 'click-handler')
+    this.eventListener.add('submit', createForm, this.handleSubmit)
+    this.eventListener.add('click', deleteAllDoneTaskButton, this.handleClickDeleteAllDoneTasks)
 
     this.taskRenderer.subscribeDragAndDrop(this.handleDropAndDrop)
   }
