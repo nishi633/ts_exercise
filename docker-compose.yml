@@ -7,3 +7,15 @@ services:
       - ./node-app:/root
     tty: true
     stdin_open: true
+
+  browser-app:
+    build:
+      context: ./browser-app/
+    container_name: browser-app
+    command: "npm run serve"
+    volumes:
+      - ./browser-app:/root
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true
