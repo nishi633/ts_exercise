@@ -12,9 +12,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "moduleResolution": "node",
-    # Reactのシンタックスを解釈できるようにするため
     "jsx": "react-jsx",
-    # .js, .jsxを使う設定
     "allowJs": true
   }
 }

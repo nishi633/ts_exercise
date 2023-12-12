@@ -24,7 +24,7 @@ services:
     build:
       context: ./react-app/
     container_name: react-app
-    #command: "npm run serve"
+    command: "npm run serve"
     volumes:
       - ./react-app:/root
     ports:
