@@ -1,3 +1,5 @@
+import styled from 'styled-components'
+import { color, radius, space } from './constants'
 import { VFC } from 'react'
 
 type ButtonType = 'primary' | 'secondary' | 'error'
@@ -14,8 +16,18 @@ export const Button: VFC<Props> = ({
   onClick,
 }) => {
   return (
-    <button onClick={onClick}>
+    <Wrapper onClick={onClick}>
       {title}
-    </button>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.button`
+  padding: ${space.m};
+  border-radius: ${radius.m};
+  border: solid 1px ${color.green};
+  background: ${color.green};
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+`
