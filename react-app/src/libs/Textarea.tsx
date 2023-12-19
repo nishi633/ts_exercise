@@ -22,7 +22,7 @@ export const Textarea: VFC<Props> = ({ maxLength, width = 300 }) => {
       <Wrapper onChange={handleChange} width={width} className={isError() ? 'error' : ''} />
       {maxLength !== undefined && (
         <Count className={isError() ? 'error' : ''}>
-          残り{Math.max(maxLength = count, 0)}文字です
+          残り{Math.max(maxLength - count, 0)}文字です
         </Count>
       )}
     </>
