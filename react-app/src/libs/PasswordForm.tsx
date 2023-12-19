@@ -1,4 +1,4 @@
-import { VFC, useState, ChangeEvent } from 'react'
+import { VFC, useCallback, useEffect, useState, ChangeEvent } from 'react'
 import styled from 'styled-components'
 import { fontSize, space } from './constants'
 
@@ -15,6 +15,17 @@ export const PasswordForm: VFC<Props> = ({ onSubmit }) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.currentTarget.value)
   }
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      onSubmit(value)
+    }
+  }, [value])
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [handleKeyDown])
 
   return (
     <Wrapper>
