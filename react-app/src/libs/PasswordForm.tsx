@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { VFC, useState, ChangeEvent } from 'react'
 import styled from 'styled-components'
 import { fontSize, space } from './constants'
 
@@ -10,11 +10,17 @@ type Props = {
 }
 
 export const PasswordForm: VFC<Props> = ({ onSubmit }) => {
+  const [value, setValue] = useState<string>('')
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.currentTarget.value)
+  }
+
   return (
     <Wrapper>
       <Label htmlFor="password">Password:</Label>
-      <InputForm id="password" type="password" onChange={(e) => console.log(e)} />
-      <Button onClick={() => onSubmit('')} title="実行" />
+      <InputForm id="password" type="password" onChange={(e) => handleChange(e)} error={value.length < 8} />
+      <Button onClick={() => onSubmit(value)} title="実行" type="primary" />
     </Wrapper>
   )
 }
