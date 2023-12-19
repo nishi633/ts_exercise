@@ -13,3 +13,9 @@ docker-compose up -d node-app
 ```
 docker-compose up -d browser-app
 ```
+
+## CHAPTER04 react-app
+
+```
+docker-compose up -d react-app
+```

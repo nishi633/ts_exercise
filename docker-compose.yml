@@ -19,3 +19,15 @@ services:
       - 3000:3000
     tty: true
     stdin_open: true
+
+  react-app:
+    build:
+      context: ./react-app/
+    container_name: react-app
+    command: "npm run serve"
+    volumes:
+      - ./react-app:/root
+    ports:
+      - 3001:3000
+    tty: true
+    stdin_open: true
